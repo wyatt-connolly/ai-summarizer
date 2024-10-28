@@ -1,19 +1,31 @@
 import { NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from "openai";
 
-// Initialize the Gemini AI model
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function POST(req: Request) {
   try {
     const { text } = await req.json();
 
-    // Generate content using Gemini AI
-    const result = await model.generateContent(
-      `Summarize the following text in a concise manner: ${text}`
-    );
-    const summary = result.response.text();
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a helpful assistant that summarizes text concisely.",
+        },
+        {
+          role: "user",
+          content: `Summarize the following text in a concise manner: ${text}`,
+        },
+      ],
+      max_tokens: 150,
+    });
+
+    const summary = response.choices[0].message.content;
 
     return NextResponse.json({ summary });
   } catch (error) {

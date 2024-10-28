@@ -40,14 +40,14 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4 max-w-3xl">
-      <Card className="mb-8 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white">
+      <Card className="mb-8 bg-gradient-to-r from-blue-400 via-teal-500 to-green-500 text-white">
         <CardHeader>
           <CardTitle className="text-3xl font-bold flex items-center gap-2">
             <Zap className="w-8 h-8" />
             AI Text Summarizer
           </CardTitle>
           <CardDescription className="text-white/80">
-            Powered by Gemini AI - Summarize any text with ease!
+            Powered by GPT - Summarize any text with ease!
           </CardDescription>
         </CardHeader>
       </Card>

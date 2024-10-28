@@ -14,10 +14,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AI Text Summarizer",
-  description: "Quickly summarize any text using advanced AI technology.",
+  title: "GPT Text Summarizer",
+  description: "Quickly summarize any text using GPT technology.",
   appleWebApp: {
-    title: "AI Summarizer",
+    title: "GPT Summarizer",
     statusBarStyle: "default",
   },
   icons: {
