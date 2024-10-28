@@ -1,42 +1,35 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Loader2, Type, Zap } from "lucide-react";
+import { useState } from 'react'
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Loader2, Type, Zap } from 'lucide-react'
 
-export default function Home() {
-  const [input, setInput] = useState("");
-  const [summary, setSummary] = useState("");
-  const [loading, setLoading] = useState(false);
+export function Page() {
+  const [input, setInput] = useState('')
+  const [summary, setSummary] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
     try {
-      const response = await fetch("/api/summarize", {
-        method: "POST",
+      const response = await fetch('/api/summarize', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ text: input }),
-      });
-      const data = await response.json();
-      setSummary(data.summary);
+      })
+      const data = await response.json()
+      setSummary(data.summary)
     } catch (error) {
-      console.error("Error:", error);
-      setSummary("An error occurred while summarizing the text.");
+      console.error('Error:', error)
+      setSummary('An error occurred while summarizing the text.')
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <div className="container mx-auto p-4 max-w-3xl">
@@ -58,9 +51,7 @@ export default function Home() {
             <Type className="w-5 h-5" />
             Input Text
           </CardTitle>
-          <CardDescription>
-            Enter the text you want to summarize
-          </CardDescription>
+          <CardDescription>Enter the text you want to summarize</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
@@ -82,7 +73,7 @@ export default function Home() {
                     Summarizing...
                   </>
                 ) : (
-                  "Summarize"
+                  'Summarize'
                 )}
               </Button>
             </div>
@@ -109,5 +100,5 @@ export default function Home() {
         </Card>
       )}
     </div>
-  );
+  )
 }
